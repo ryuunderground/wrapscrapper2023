@@ -1,11 +1,7 @@
-def tax_calc(money):
-    return money * 0.35
+my_name = "Ryu"
+my_age = 23
+my_color = "blue"
 
+# f"하면 문자열(string) 내에 변수 기입 가능
 
-def pay_tax(tax):
-    print("thank u 4 ur paying", tax, "$")
-
-
-bank_account = 500000
-to_pay = tax_calc(bank_account)
-pay_tax(to_pay)
+print(f"Hello. I'm {my_name}. It has been a {my_age} years that I've been the earth. {my_color} is my favorite color.")
