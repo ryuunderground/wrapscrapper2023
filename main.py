@@ -1,22 +1,14 @@
-winner = 7
+age = int(input("How r u?"))
 
-if winner > 10:
-    print("winner winer chicken dinner!")
-elif winner < 10:
-    print("...At least u tried")
+print("user answer", age)
+
+print(type(age))
+
+if age < 18:
+    print("adolscent")
+elif age >= 18 and age <= 35:
+    print("In a gooooood time")
+elif age == 60 or age == 70:
+    print("...why still alive?")
 else:
-    print("That amount")
-
-# >= <=
-# != 같지 않음
-
-if winner != 10:
-    print("If")
-elif winner <= 25:
-    print("elif")
-elif winner == 50:
-    print("elif2")
-elif winner >= 75:
-    print("elif3")
-else:
-    print("else")
+    print("adult")
