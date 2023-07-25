@@ -1,11 +1,6 @@
-def say_hello(user_name):
+def say_hello(user_name, user_age):
     print("hello", user_name, "who r u?")
+    print("R u", user_age, "years old?")
 
 
-say_hello("Ryu")
-say_hello("Louis")
-say_hello("Lauv")
-
-# def blah(papreter):
-
-# blah("argument")
+say_hello("Ryu", 25)
