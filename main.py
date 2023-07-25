@@ -1,7 +1,22 @@
-my_name = "Ryu"
-my_age = 23
-my_color = "blue"
+def juice_maker(fruit):
+    return f"{fruit} juice"
 
-# f"하면 문자열(string) 내에 변수 기입 가능
 
-print(f"Hello. I'm {my_name}. It has been a {my_age} years that I've been the earth. {my_color} is my favorite color.")
+def ice_maker(juice):
+    return f"cold {juice}"
+
+
+def sugar_maker(cold_juice):
+    return f"sweat {cold_juice}"
+
+
+def vending_machine(fruit="water..."):
+    juice = juice_maker(fruit)
+    cold_juice = ice_maker(juice)
+    product = sugar_maker(cold_juice)
+    print(product)
+
+
+flavor = "apple"
+vending_machine(flavor)
+vending_machine()
