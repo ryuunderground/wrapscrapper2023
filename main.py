@@ -1,5 +1,5 @@
-my_name = True
-ur_name = False
-print(my_name)
-print(ur_name)
-# True, False의 첫 글자는 대문자
+my_name = "Ryu"
+my_age = 25
+dead = False
+print("Hello my name is", my_name)
+print("and I'm", my_age, "years old")
