@@ -1,25 +1,11 @@
-def plus(a=0, b=0):
-    print(a + b)
+def tax_calc(money):
+    return money * 0.35
 
 
-def times(a=0, b=0):
-    print(a * b)
+def pay_tax(tax):
+    print("thank u 4 ur paying", tax, "$")
 
 
-def divide(a=0, b=1):
-    print(a / b)
-
-
-def minus(a=0, b=0):
-    print(a - b)
-
-
-plus(100, 50)
-minus(100, 50)
-times(100, 50)
-divide(100, 50)
-
-plus()
-minus()
-divide()
-times()
+bank_account = 500000
+to_pay = tax_calc(bank_account)
+pay_tax(to_pay)
