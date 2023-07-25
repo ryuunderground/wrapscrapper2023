@@ -1,10 +1,8 @@
-# 조건문 양식
-# if condition:
-#    "write code run"
-# else:
-#    "write another code run"
-password_correct = True
-if password_correct:
-    print("Here is ur money")
+winner = 7
+
+if winner > 10:
+    print("winner winer chicken dinner!")
+elif winner < 10:
+    print("...At least u tried")
 else:
-    print("Wrong password")
+    print("That amount")
