@@ -1,14 +1,21 @@
-age = int(input("How r u?"))
+"""문장 하나가 아니라
+문단 단위의 주석이 필요할 때
 
-print("user answer", age)
+from random import randint, uniform
 
-print(type(age))
+user_num = int(input("Choose a number."))
 
-if age < 18:
-    print("adolscent")
-elif age >= 18 and age <= 35:
-    print("In a gooooood time")
-elif age == 60 or age == 70:
-    print("...why still alive?")
+answer = randint(1, 99)
+
+if user_num == answer:
+    print("You win!!!")
+elif user_num > answer:
+    print("Go lower! The answer was", answer)
 else:
-    print("adult")
+    print("Go higher! The answer was", answer)"""
+
+distance = 0
+
+while distance <= 20:
+    print("ghhhhh", distance, "km... tough stuff")
+    distance = distance + 1
