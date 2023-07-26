@@ -1,21 +1,18 @@
-"""문장 하나가 아니라
-문단 단위의 주석이 필요할 때
-
-from random import randint, uniform
-
-user_num = int(input("Choose a number."))
-
+from random import randint
+# 업다운 게임 만들기
+print("Welcome to Pythin Up-Down")
 answer = randint(1, 99)
 
-if user_num == answer:
-    print("You win!!!")
-elif user_num > answer:
-    print("Go lower! The answer was", answer)
-else:
-    print("Go higher! The answer was", answer)"""
-
-distance = 0
-
-while distance <= 20:
-    print("ghhhhh", distance, "km... tough stuff")
-    distance = distance + 1
+playing = True
+challenge = 1
+while playing:
+    user_num = int(input("Name a number."))
+    if user_num == answer:
+        print("You win!!! Congrats! Succeed in", challenge, "tries")
+        playing = False
+    elif user_num > answer:
+        print("Go lower!")
+        challenge = challenge + 1
+    else:
+        print("Go higher!")
+        challenge = challenge + 1
