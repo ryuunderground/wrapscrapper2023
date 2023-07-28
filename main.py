@@ -3,14 +3,21 @@ player = {
     'age': 22,
     'alive': True,
     'fav_food': ["pizza", "korean"],
-    'disapear': 'soon'
+    'disappear': 'soon',
+    'best_song': ("Best of me", "Male fantasy", "Light switch"),
+    'friend': {
+        'name': 'Shin',
+        'age': 21,
+        'fav_food': ["pasta"],
+        'best_song': ("Save our lives", "Utopia", "Hijo dela luna"),
+
+    }
 }
-print(player.get('age'))
-print(player['alive'])
-print(player.get('fav_food'))
-player.pop('disapear')
+# Player Update
+player['best_song'] = ["Microkosmos", "Make it right"]
 print(player)
-player['xp'] = 250
+# Player Update 2
+player.pop('disappear')
+# Player Update 3
+player['friend']['fav_food'].append("creamy stuff")
 print(player)
-player['fav_food'].append("ramyeon")
-print(player['fav_food'])
