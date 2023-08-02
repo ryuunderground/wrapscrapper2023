@@ -29,10 +29,9 @@ while job_search:
             for pli in post_list_info:
                 for anchors in pli.find_all('a'):
                     anchor = anchors.get('href')
+                    links = []
                     if not anchor.endswith('logpath=1') and not anchor.endswith('g7intern'):
-                        links = []
                         links.append(anchor)
-                        print(links)
                     title = anchors.get('title')
                     if title != None:
                         titles = []
@@ -42,6 +41,8 @@ while job_search:
                     locations = []
                     locations.append(location[24:-7])
                     print(titles, locations, links)
-                    print("////////////////////////")
+                    job_data = {'company': str(titles),
+                                'region': str(locations),
+                                'apply': str(links)}
 
         job_search = False
