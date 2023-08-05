@@ -12,6 +12,8 @@ while job_search:
     if response.status_code != 200:
         print("Can't request website")
     else:
+        stack = 0
+        results = []
         soup = BeautifulSoup(response.text, "html.parser")
         job_posts = soup.find_all('li', class_="list-post")
         for post in job_posts:
@@ -29,20 +31,19 @@ while job_search:
             for pli in post_list_info:
                 for anchors in pli.find_all('a'):
                     anchor = anchors.get('href')
-                    links = []
-                    if not anchor.endswith('logpath=1') and not anchor.endswith('g7intern'):
-                        links.append(anchor)
-                    title = anchors.get('title')
-                    if title != None:
-                        titles = []
-                        titles.append(title)
-                for span in pli.find_all('span', class_="loc short"):
-                    location = str(span)
-                    locations = []
-                    locations.append(location[24:-7])
-                    print(titles, locations, links)
-                    job_data = {'company': str(titles),
-                                'region': str(locations),
-                                'apply': str(links)}
-
-        job_search = False
+                    title_raw = anchors.get('title')
+                    if stack == 20:
+                        break
+                    else:
+                        stack = stack + 1
+                        link = anchor
+                        title = title_raw
+                    for span in pli.find_all('span', class_="loc short"):
+                        location_raw = str(span)
+                        location = location_raw[24:-7]
+                job_data_dic = {'company': title,
+                                'region': location,
+                                'apply': link}
+                results.append(job_data_dic)
+            print(results)
+            job_search = False
