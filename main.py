@@ -35,11 +35,10 @@ while job_search:
                             company = companies
                             link = anchor
                             title = title_raw
-                            location_raw = str(span)
-                            location = location_raw[24:-7]
+                            location = span
                             job_data_dic = {'companies': company,
                                             'contents': title,
-                                            'region': location,
+                                            'region': location.string,
                                             'apply': link}
                             results.append(job_data_dic)
         job_search = False
