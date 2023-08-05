@@ -39,7 +39,8 @@ while job_search:
                             job_data_dic = {'companies': company,
                                             'contents': title,
                                             'region': location.string,
-                                            'apply': link}
+                                            'apply': f"https://www.jobkorea.co.kr{link}"
+                                            }
                             results.append(job_data_dic)
         job_search = False
 print(results)
