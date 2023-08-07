@@ -10,5 +10,7 @@ options = Options()
 options.add_argument("--no-snadbox")
 options.add_argument("--disable-dev-shm-usage")
 
+browser = webdriver.chrome(options=Options)
+
 jobs = extract_jobkorea_jobs("인턴")
 print(jobs)
