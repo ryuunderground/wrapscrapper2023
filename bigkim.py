@@ -7,6 +7,8 @@ import requests
 base_url = "https://www.bigkim.org/논문/"
 response = requests.get(base_url)
 results = []
+titles = []
+links = []
 if response.status_code != 200:
     print("Can't request page.")
 else:
@@ -15,24 +17,23 @@ else:
         'div', class_="elementor-widget-container")
     for anchors in publication_soup:
         publications = anchors.find_all('a')
-        for is_raw in publications:
-            subjects_raw = is_raw.find_all('i')
-            for pure_subjects in subjects_raw:
-                subjects = pure_subjects.string
-                if subjects == None:
-                    print('-')
-                else:
-                    print(subjects)
+        for hrefs in publications:
+            httpss = hrefs.get('href')
+            if httpss.startswith("https"):
+                links.append(httpss)
         for titles_raw_raw in publications:
             titles_raw = titles_raw_raw.stripped_strings
             for pure_titles in titles_raw:
-                titles = pure_titles
-                # print(titles)
-                # print("/////////////")
-        for hrefs in publications:
-            links = hrefs.get('href')
-            data_dic = {
-                'title': titles,
-                'link': links
-            }
-            # print(data_dic)
+                names = pure_titles
+                years = 2024
+                while years >= 2018:
+                    years = years - 1
+                    if f"{years})" in names:
+                        titles.append(names)
+                        """data_dic = {
+                            'title': titles,
+                            'link': links
+                        }"""
+    print(len(links))
+    print(len(titles))
+    # print(data_dic)
