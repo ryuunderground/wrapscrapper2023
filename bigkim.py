@@ -17,6 +17,13 @@ else:
         'div', class_="elementor-widget-container")
     for anchors in publication_soup:
         publications = anchors.find_all('a')
+        """for itelics in publications:
+            subjects = itelics.find_all('i')
+            if not subjects:
+                print("byenungshin")
+            else:
+                print("gaebalja saekki")
+            빈 리스트 체크는 이렇게"""
         for hrefs in publications:
             httpss = hrefs.get('href')
             if httpss.startswith("https"):
@@ -34,6 +41,6 @@ else:
                             'title': titles,
                             'link': links
                         }"""
-    print(len(links))
-    print(len(titles))
+    # print(len(links))
+    # print(titles)
     # print(data_dic)
