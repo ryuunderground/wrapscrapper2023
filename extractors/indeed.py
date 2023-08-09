@@ -21,15 +21,36 @@ driver.get(
     f"{base_url_head}{search_keyword}&l={location_keyword}{base_url_tail}")
 
 soup = BeautifulSoup(driver.page_source, "html.parser")
-job_posts = soup.find_all(
+job_posts = soup.find(
     'ul', class_="jobsearch-ResultsList css-0")
 # recursive=False
-# 한 사이클만 돌아감, 재귀 X
+# 후손이 아닌 직계 자손만 검색
+results = []
 for posts in job_posts:
-    for anchors in posts.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
-        print(anchors)
+    anchors = posts.select_one("h2 a")
+    if anchors != None:
+        titles = anchors['aria-label']
+        links = anchors['href']
+    """for anchors in posts.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
+        
         titles = anchors.get('aria-label')
-        # print(titles)
+        links = anchors.get('href')
+        print(links)"""
+    names = posts.find("span", class_="companyName")
+    if names != None:
+        nms = names
+    locations = posts.find("div", class_="companyLocation")
+    if locations != None:
+        locs = locations
+    job_datas = {
+        'link': f"https://kr.indeed.com/{links}",
+        'company': nms.string,
+        'location': locs.string,
+        'position': titles
+    }
+    results.append(job_datas)
 
+for result in results:
+    print(result, "////////////n\//////")
 while (True):
     pass
