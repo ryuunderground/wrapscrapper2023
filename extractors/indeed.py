@@ -13,44 +13,62 @@ driver = webdriver.Chrome(service=Service(
     ChromeDriverManager().install()), options=chrome_options)
 # 크롬드라이버를 최신으로 유지해줍니다
 
-base_url_head = "https://kr.indeed.com/jobs?q="
-base_url_tail = "&vjk=938c3c09748cc0cd"
-search_keyword = "인턴"
-location_keyword = "서울"
-driver.get(
-    f"{base_url_head}{search_keyword}&l={location_keyword}{base_url_tail}")
 
-soup = BeautifulSoup(driver.page_source, "html.parser")
-job_posts = soup.find(
-    'ul', class_="jobsearch-ResultsList css-0")
-# recursive=False
-# 후손이 아닌 직계 자손만 검색
-results = []
-for posts in job_posts:
-    anchors = posts.select_one("h2 a")
-    if anchors != None:
-        titles = anchors['aria-label']
-        links = anchors['href']
-    """for anchors in posts.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
-        
-        titles = anchors.get('aria-label')
-        links = anchors.get('href')
-        print(links)"""
-    names = posts.find("span", class_="companyName")
-    if names != None:
-        nms = names
-    locations = posts.find("div", class_="companyLocation")
-    if locations != None:
-        locs = locations
-    job_datas = {
-        'link': f"https://kr.indeed.com/{links}",
-        'company': nms.string,
-        'location': locs.string,
-        'position': titles
-    }
-    results.append(job_datas)
+def get_page_count(search_keyword, location_keyword):
+    base_url_head = "https://kr.indeed.com/jobs?q="
+    base_url_tail = "&fromage=7&vjk=1b45b4877109169b"
+    search_keyword = "인턴"
+    location_keyword = "서울"
+    driver.get(
+        f"{base_url_head}{search_keyword}&l={location_keyword}{base_url_tail}")
+    soup = BeautifulSoup(driver.page_source, "html.parser")
+    pagination = soup.find("nav", {"aria-label": "pagination"})
+    if pagination == None:
+        return 1
+    pages = pagination.find_all("div", recursive=False)
+    print(len(pages))
 
-for result in results:
-    print(result, "////////////n\//////")
+
+def indeed_job_extract(search_keyword, location_keyword):
+
+    base_url_head = "https://kr.indeed.com/jobs?q="
+    base_url_tail = "&vjk=938c3c09748cc0cd"
+    driver.get(
+        f"{base_url_head}{search_keyword}&l={location_keyword}{base_url_tail}")
+    soup = BeautifulSoup(driver.page_source, "html.parser")
+    job_posts = soup.find(
+        'ul', class_="jobsearch-ResultsList css-0")
+    # recursive=False
+    # 후손이 아닌 직계 자손만 검색
+    results = []
+    for posts in job_posts:
+        anchors = posts.select_one("h2 a")
+        if anchors != None:
+            titles = anchors['aria-label']
+            links = anchors['href']
+        # for anchors in posts.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
+        #    titles = anchors.get('aria-label')
+        #    links = anchors.get('href')
+        #    print(links)
+        names = posts.find("span", class_="companyName")
+        if names != None:
+            nms = names
+        locations = posts.find("div", class_="companyLocation")
+        if locations != None:
+            locs = locations
+        job_datas = {
+            'link': f"https://kr.indeed.com/{links}",
+            'company': nms.string,
+            'location': locs.string,
+            'position': titles
+        }
+        results.append(job_datas)
+
+    for result in results:
+        print(result, "////////////n\//////")
+
+
+get_page_count("인턴", "서울")
+
 while (True):
     pass
