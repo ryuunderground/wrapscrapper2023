@@ -29,9 +29,9 @@ def get_last_page():
         next_url = "https://kr.indeed.com"
         if not go_to_next_page.startswith("https://"):
             go_to_next_page = f"{next_url}{go_to_next_page}"
-        print(go_to_next_page)
-        driver.get(go_to_next_page)
-        get_last_page()
+            print(go_to_next_page)
+            driver.get(go_to_next_page)
+            get_last_page()
     else:
         print("finally")
         """last_pagination = soup.find(
