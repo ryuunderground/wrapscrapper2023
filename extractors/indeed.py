@@ -5,18 +5,17 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-chrome_options = Options()
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_experimental_option("detach", True)
-# 브라우저 꺼짐 방지 코드
-
-driver = webdriver.Chrome(service=Service(
-    ChromeDriverManager().install()), options=chrome_options)
-# 크롬드라이버를 최신으로 유지해줍니다
-
 
 def get_page_count(search_keyword, location_keyword):
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_experimental_option("detach", True)
+    # 브라우저 꺼짐 방지 코드
+
+    driver = webdriver.Chrome(service=Service(
+        ChromeDriverManager().install()), options=chrome_options)
+    # 크롬드라이버를 최신으로 유지해줍니다
     base_url_head = "https://kr.indeed.com/jobs?q="
     base_url_tail = "&fromage=7&vjk=1b45b4877109169b"
     search_keyword = "인턴"
@@ -40,6 +39,15 @@ def indeed_job_extract(search_keyword, location_keyword):
     print("Found", pages, "pages")
     results = []
     for page in range(pages):
+        chrome_options = Options()
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_experimental_option("detach", True)
+        # 브라우저 꺼짐 방지 코드
+
+        driver = webdriver.Chrome(service=Service(
+            ChromeDriverManager().install()), options=chrome_options)
+        # 크롬드라이버를 최신으로 유지해줍니다
         base_url_head = "https://kr.indeed.com/jobs"
         final_url = f"{base_url_head}?q={search_keyword}&l={location_keyword}&fromage=7&start={page*10}&vjk=1b45b4877109169b"
         print("Requesting", final_url)
@@ -47,8 +55,6 @@ def indeed_job_extract(search_keyword, location_keyword):
         soup = BeautifulSoup(driver.page_source, "html.parser")
         job_posts = soup.find(
             'ul', class_="jobsearch-ResultsList")
-        if job_posts == None:
-            print("sth went wrong...")
         # recursive=False
         # 후손이 아닌 직계 자손만 검색
         for posts in job_posts:
@@ -75,9 +81,6 @@ def indeed_job_extract(search_keyword, location_keyword):
             results.append(job_datas)
     return results
 
-
-jobs = indeed_job_extract("인턴", "서울")
-print(jobs)
 
 while (True):
     pass
