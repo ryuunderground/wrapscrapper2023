@@ -74,9 +74,9 @@ def indeed_job_extract(search_keyword, location_keyword):
                 locs = locations
             job_datas = {
                 'link': f"https://kr.indeed.com/{links}",
-                'company': nms.string,
-                'location': locs.string,
-                'position': titles
+                'company': nms.string.replace(",", " "),
+                'location': locs.string.replace(",", " "),
+                'position': titles.replace(",", " ")
             }
             results.append(job_datas)
     return results

@@ -4,9 +4,9 @@ import requests
 # pip install requests
 
 
-def extract_jobkorea_jobs(keyword):
+def extract_jobkorea_jobs(search_keyword):
     base_url = "https://www.jobkorea.co.kr/Search/?stext="
-    response = requests.get(f"{base_url}{keyword}")
+    response = requests.get(f"{base_url}{search_keyword}")
 
     results = []
     job_search = True
@@ -37,11 +37,15 @@ def extract_jobkorea_jobs(keyword):
                                 link = anchor
                                 title = title_raw
                                 location = span
-                                job_data_dic = {'companies': company,
-                                                'contents': title,
-                                                'region': location.string,
-                                                'apply': f"https://www.jobkorea.co.kr/{link}"
-                                                }
+                                job_data_dic = {
+                                    'link': f"https://www.jobkorea.co.kr/{link}",
+                                    'companies': company.replace(",", " "),
+                                    'location': location.string.replace(",", " "),
+                                    'position': title.replace(",", " ")
+                                }
                                 results.append(job_data_dic)
             job_search = False
     return results
+
+
+print(extract_jobkorea_jobs("인턴"))
