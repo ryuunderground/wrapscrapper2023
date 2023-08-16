@@ -39,13 +39,10 @@ def extract_jobkorea_jobs(search_keyword):
                                 location = span
                                 job_data_dic = {
                                     'link': f"https://www.jobkorea.co.kr/{link}",
-                                    'companies': company.replace(",", " "),
+                                    'company': company.replace(",", " "),
                                     'location': location.string.replace(",", " "),
                                     'position': title.replace(",", " ")
                                 }
                                 results.append(job_data_dic)
             job_search = False
     return results
-
-
-print(extract_jobkorea_jobs("인턴"))

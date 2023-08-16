@@ -48,13 +48,14 @@ def indeed_job_extract(search_keyword, location_keyword):
         driver = webdriver.Chrome(service=Service(
             ChromeDriverManager().install()), options=chrome_options)
         # 크롬드라이버를 최신으로 유지해줍니다
+
         base_url_head = "https://kr.indeed.com/jobs"
         final_url = f"{base_url_head}?q={search_keyword}&l={location_keyword}&fromage=7&start={page*10}&vjk=1b45b4877109169b"
         print("Requesting", final_url)
         driver.get(final_url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
         job_posts = soup.find(
-            'ul', class_="jobsearch-ResultsList")
+            'ul', class_="jobsearch-ResultsList css-0")
         # recursive=False
         # 후손이 아닌 직계 자손만 검색
         for posts in job_posts:
@@ -68,19 +69,26 @@ def indeed_job_extract(search_keyword, location_keyword):
             #    print(links)
             names = posts.find("span", class_="companyName")
             if names != None:
-                nms = names
+                nms = names.string
+            else:
+                nms = "Noname"
             locations = posts.find("div", class_="companyLocation")
             if locations != None:
-                locs = locations
+                locs = locations.string
+            else:
+                locs = "Nowhere"
             job_datas = {
                 'link': f"https://kr.indeed.com/{links}",
-                'company': nms.string.replace(",", " "),
-                'location': locs.string.replace(",", " "),
+                'company': nms.replace(",", " "),
+                'location': locs.replace(",", " "),
                 'position': titles.replace(",", " ")
             }
             results.append(job_datas)
     return results
 
+
+print(indeed_job_extract("인턴", "서울"))
+print(len(indeed_job_extract("인턴", "서울")))
 
 while (True):
     pass

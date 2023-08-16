@@ -9,10 +9,16 @@ jobkorea = extract_jobkorea_jobs(search_keyword)
 
 jobs = indeed + jobkorea
 
-file = open(f"{search_keyword}.csv", "w")
+jobs = jobkorea
 
+file = open(f"{search_keyword}.csv", "w", encoding="utf-8-sig")
 file.write("Position,Company,Location,Url\n")
+
 for job in jobs:
     file.write(
         f"{job['position']},{job['company']},{job['location']},{job['link']}\n")
-file.close
+
+file.close()
+
+while (True):
+    pass
