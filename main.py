@@ -4,7 +4,7 @@ from extractors.jobkorea import extract_jobkorea_jobs
 search_keyword, location_keyword = input("what are you looking for?").split()
 print(f"{search_keyword}and{location_keyword}")
 
-indeed = indeed_job_extract(search_keyword, location)
+indeed = indeed_job_extract(search_keyword, location_keyword)
 jobkorea = extract_jobkorea_jobs(search_keyword)
 
 jobs = indeed + jobkorea
