@@ -55,28 +55,27 @@ def indeed_job_extract(search_keyword, location_keyword):
         driver.get(final_url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
         job_posts = soup.find(
-            'ul', class_="jobsearch-ResultsList css-0")
+            'ul', class_="css-zu9cdh eu4oa1w0")
+        job_lists = job_posts.find_all("li", recursive=False)
         # recursive=False
         # 후손이 아닌 직계 자손만 검색
-        for posts in job_posts:
-            anchors = posts.select_one("h2 a")
-            if anchors != None:
-                titles = anchors['aria-label']
-                links = anchors['href']
-            # for anchors in posts.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
+        for lists in job_lists:
+            zone = lists.find("div", class_="mosaic-zone")
+            if zone == None:
+                anchors = lists.select_one("h2 a")
+                if anchors != None:
+                    titles = anchors['aria-label']
+                    links = anchors['href']
+            # for anchors in lists.find_all('a', class_="jcs-JobTitle css-jspxzf eu4oa1w0"):
             #    titles = anchors.get('aria-label')
             #    links = anchors.get('href')
             #    print(links)
-            names = posts.find("span", class_="companyName")
-            if names != None:
-                nms = names.string
-            else:
-                nms = "Noname"
-            locations = posts.find("div", class_="companyLocation")
-            if locations != None:
-                locs = locations.string
-            else:
-                locs = "Nowhere"
+                names = lists.find("span", class_="companyName")
+                if names != None:
+                    nms = names.string
+                locations = lists.find("div", class_="companyLocation")
+                if locations != None:
+                    locs = locations.string
             job_datas = {
                 'link': f"https://kr.indeed.com/{links}",
                 'company': nms.replace(",", " "),
@@ -84,11 +83,9 @@ def indeed_job_extract(search_keyword, location_keyword):
                 'position': titles.replace(",", " ")
             }
             results.append(job_datas)
+
     return results
 
-
-print(indeed_job_extract("인턴", "서울"))
-print(len(indeed_job_extract("인턴", "서울")))
 
 while (True):
     pass
