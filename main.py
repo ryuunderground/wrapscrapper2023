@@ -1,5 +1,5 @@
-from extractors.indeed import indeed_job_extract
 from extractors.jobkorea import extract_jobkorea_jobs
+from extractors.indeed import indeed_job_extract
 from file import save_to_file
 
 search_keyword, location_keyword = input("what are you looking for?").split()
@@ -10,11 +10,8 @@ jobkorea = extract_jobkorea_jobs(search_keyword)
 
 jobs = indeed + jobkorea
 
-jobs = jobkorea
-
 save_to_file(search_keyword, jobs)
-while (True):
-    pass
+
 """form flask import Flask
 app = Flask("JobScrapper)
 @app.route("/")

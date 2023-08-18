@@ -8,6 +8,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def get_page_count(search_keyword, location_keyword):
     chrome_options = Options()
+    chrome_options.add_experimental_option(
+        "excludeSwitches", ["enable-logging"])
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_experimental_option("detach", True)
@@ -40,6 +42,8 @@ def indeed_job_extract(search_keyword, location_keyword):
     results = []
     for page in range(pages):
         chrome_options = Options()
+        chrome_options.add_experimental_option(
+            "excludeSwitches", ["enable-logging"])
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_experimental_option("detach", True)
@@ -83,9 +87,4 @@ def indeed_job_extract(search_keyword, location_keyword):
                 'position': titles.replace(",", " ")
             }
             results.append(job_datas)
-
     return results
-
-
-while (True):
-    pass
