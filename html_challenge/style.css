@@ -1,0 +1,38 @@
+@import "reset.css";
+
+body {
+  display: flex;
+  background-color: tomato;
+  align-items: center;
+  justify-content: center;
+}
+.center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: solid 2px black;
+  width: 250px;
+  height: 250px;
+  margin-top: 170px;
+}
+.box {
+  margin: 20px 0 -5px 0;
+}
+.beige {
+  background-color: #f5deb3;
+}
+.green {
+  background-color: #008080;
+}
+.short {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  border: solid 2px white;
+}
+.long {
+  display: inline-block;
+  width: 200px;
+  height: 55px;
+  border: dashed 2px white;
+}

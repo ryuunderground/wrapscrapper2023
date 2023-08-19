@@ -4,9 +4,9 @@ import requests
 # pip install requests
 
 
-def extract_jobkorea_jobs(search_keyword):
+def extract_jobkorea_jobs(keyword):
     base_url = "https://www.jobkorea.co.kr/Search/?stext="
-    response = requests.get(f"{base_url}{search_keyword}")
+    response = requests.get(f"{base_url}{keyword}")
 
     results = []
     job_search = True

@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def get_page_count(search_keyword, location_keyword):
+def get_page_count(keyword, location):
     chrome_options = Options()
     chrome_options.add_experimental_option(
         "excludeSwitches", ["enable-logging"])
@@ -20,10 +20,10 @@ def get_page_count(search_keyword, location_keyword):
     # 크롬드라이버를 최신으로 유지해줍니다
     base_url_head = "https://kr.indeed.com/jobs?q="
     base_url_tail = "&fromage=7&vjk=1b45b4877109169b"
-    search_keyword = "인턴"
-    location_keyword = "서울"
+    keyword = "인턴"
+    location = "서울"
     driver.get(
-        f"{base_url_head}{search_keyword}&l={location_keyword}{base_url_tail}")
+        f"{base_url_head}{keyword}&l={location}{base_url_tail}")
     soup = BeautifulSoup(driver.page_source, "html.parser")
     pagination = soup.find("nav", {"aria-label": "pagination"})
     if pagination == None:
@@ -36,8 +36,8 @@ def get_page_count(search_keyword, location_keyword):
         return count
 
 
-def indeed_job_extract(search_keyword, location_keyword):
-    pages = get_page_count(search_keyword, location_keyword)
+def indeed_job_extract(keyword, location):
+    pages = get_page_count(keyword, location)
     print("Found", pages, "pages")
     results = []
     for page in range(pages):
@@ -54,7 +54,7 @@ def indeed_job_extract(search_keyword, location_keyword):
         # 크롬드라이버를 최신으로 유지해줍니다
 
         base_url_head = "https://kr.indeed.com/jobs"
-        final_url = f"{base_url_head}?q={search_keyword}&l={location_keyword}&fromage=7&start={page*10}&vjk=1b45b4877109169b"
+        final_url = f"{base_url_head}?q={keyword}&l={location}&fromage=7&start={page*10}&vjk=1b45b4877109169b"
         print("Requesting", final_url)
         driver.get(final_url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
