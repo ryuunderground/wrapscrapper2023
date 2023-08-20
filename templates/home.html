@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
     <title>Job scrapper</title>
   </head>
   <body>
-    <h1>Job Scrapper</h1>
-    <h4>What job do u want?</h4>
-    <form action="/search">
-      <input type="text" name="keyword" placeholder="Write keyword plz" />
-      <input
-        type="text"
-        name="location"
-        placeholder="Write where u want to work"
-      />
-      <button>Search</button>
-    </form>
+    <main class="comtainer">
+      <h1>Job Scrapper</h1>
+      <h4>What job do u want?</h4>
+      <form action="/search">
+        <input type="text" name="keyword" placeholder="Write keyword plz" />
+
+        <input
+          type="text"
+          name="location"
+          placeholder="Write where u want to work"
+        />
+        <button>Search</button>
+      </form>
+    </main>
   </body>
 </html>

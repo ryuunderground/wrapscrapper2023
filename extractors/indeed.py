@@ -20,8 +20,6 @@ def get_page_count(keyword, location):
     # 크롬드라이버를 최신으로 유지해줍니다
     base_url_head = "https://kr.indeed.com/jobs?q="
     base_url_tail = "&fromage=7&vjk=1b45b4877109169b"
-    keyword = "인턴"
-    location = "서울"
     driver.get(
         f"{base_url_head}{keyword}&l={location}{base_url_tail}")
     soup = BeautifulSoup(driver.page_source, "html.parser")
