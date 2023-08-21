@@ -36,7 +36,6 @@ def get_page_count(keyword, location):
 
 def indeed_job_extract(keyword, location):
     pages = get_page_count(keyword, location)
-    print("Found", pages, "pages")
     results = []
     for page in range(pages):
         chrome_options = Options()
@@ -53,7 +52,6 @@ def indeed_job_extract(keyword, location):
 
         base_url_head = "https://kr.indeed.com/jobs"
         final_url = f"{base_url_head}?q={keyword}&l={location}&fromage=7&start={page*10}&vjk=1b45b4877109169b"
-        print("Requesting", final_url)
         driver.get(final_url)
         soup = BeautifulSoup(driver.page_source, "html.parser")
         job_posts = soup.find(
