@@ -1,109 +1,125 @@
 @import "reset.css";
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&family=Libre+Baskerville:wght@700&family=Vollkorn:wght@500;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 body {
-  border: solid 5px #00c6ad;
-  font-family: "Kanit", sans-serif;
-}
-
-.screen__header {
   display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
-.screen__header h1 {
-  font-size: 30px;
-}
-.x_button {
-  position: absolute;
-  left: 10px;
-  top: 3px;
-}
-
-.user-component {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.song_info {
+  background-color: red;
+  width: 100%;
+  justify-content: end;
   flex-wrap: wrap;
-  width: 175px;
-  height: 100px;
+  font-family: "Bebas Neue", sans-serif;
 }
-.song_info div:first-child {
-  font-size: 35px;
+main {
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  padding: 50px 20px;
 }
-.song_info div:last-child {
-  font-size: 20px;
+.screen__header {
+  width: 100%;
 }
-.album_img {
+.status-bar {
+  background-color: #ffce33;
   display: flex;
-  background-color: #ffbd11;
-  width: 130px;
-  height: 130px;
-  border: solid 2px black;
-  border-radius: 20px;
-}
-.song_info div {
-  display: inline-block;
-}
-.user-component:nth-child(2) {
-  margin: 45px 0;
-}
-.user-component:nth-child(2) div {
-  display: flex;
-  border: solid black;
-  border-width: 2px 2px 5px 2px;
-  border-radius: 50%;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
+  padding: 35px 10px 50px 10px;
+  flex-wrap: wrap;
 }
-.user-component:nth-child(2) div:first-child {
-  width: 180px;
-  height: 65px;
-  border-radius: 20px;
+
+.status-bar__column {
+  width: 33%;
 }
-.user-component:nth-child(2) div:first-child span {
-  margin-left: 5px;
+
+.status-bar__column span {
+  padding-right: 0.1rem;
+  box-sizing: border-box;
+}
+
+.titles {
   font-size: 25px;
 }
-li {
+.botd {
+  margin-top: 20px;
   display: flex;
-  margin: 50px 20px;
-}
-.song_list_info {
-  display: flex;
-  align-items: center;
-  width: 300px;
   flex-wrap: wrap;
 }
-.song_list_info span:first-child {
-  margin-right: 150px;
+.botd_img {
+  width: 100px;
+  height: 160px;
+  background-color: green;
+  margin-right: 20px;
+}
+.botd_info {
+  width: 310px;
+}
+.botd_info span {
+  display: block;
+  margin: 5px 0;
+}
+.botd_info span:first-child {
   font-size: 20px;
 }
-.song_list_info span:last-child {
+.botd_info span:nth-child(2) {
   font-size: 15px;
+  color: #dfdfdf;
 }
-.album_img_small {
-  width: 55px;
-  height: 55px;
+.botd_interaction {
+  margin: 5px;
+}
+.keyword div {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 25px;
+  margin: 0;
+  background-color: #f7f7f7;
+}
+.status-bar__column:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+
+.status-bar__column:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.search {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+}
+.search-bar {
+  width: 1000px;
+  height: 50px;
   border-radius: 20px;
-  border: solid black 2px;
-  margin-right: 10px;
 }
-#matargasti_img {
-  background-color: #f85a2a;
+.search_icon {
+  position: relative;
 }
-#attitude_img {
-  background-color: #ff89bb;
+.search_icon svg {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
 }
-#try_everything_img {
-  background-color: #1947e5;
+
+.bookmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background-color: #ffce33;
+  border-radius: 50%;
 }
-#sunflower_img {
-  background-color: #00c6ad;
+.others {
+  display: inline-block;
+}
+.others div:last-child {
+  background-color: black;
+  color: white;
+  font-size: 20px;
 }
