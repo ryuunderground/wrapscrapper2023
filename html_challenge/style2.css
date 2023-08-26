@@ -1,5 +1,5 @@
 @import "reset.css";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lilita+One&display=swap");
 
 body {
   display: flex;
@@ -8,19 +8,27 @@ body {
   justify-content: space-evenly;
   align-items: center;
   background-color: #eeedf2;
+  font-family: "Bebas Neue", sans-serif;
+  font-family: "Lilita One", cursive;
 }
 
-.screen1 {
+.screen1,
+.screen2 {
+  display: flex;
+  flex-direction: column;
   position: relative;
   background-color: white;
-  width: 35%;
-  height: 120%;
+  width: 35vw;
+  height: 80%;
+  overflow-y: auto;
+  align-items: center;
+  z-index: 3;
 }
 
 .status-bar {
-  position: fixed;
+  position: absolute;
   display: flex;
-  width: 35%;
+  width: 100%;
   justify-content: space-between;
   padding: 0 20px;
   box-sizing: border-box;
@@ -42,6 +50,7 @@ body {
   border-radius: 50%;
   background-color: orange;
   margin: 30px 0;
+  box-shadow: 0px 5px 10px 5px orange;
 }
 .name {
   display: flex;
@@ -62,11 +71,10 @@ body {
   margin-bottom: 30px;
 }
 .user-component:nth-child(3) {
-  display: flex;
   flex-direction: row;
   margin-bottom: 45px;
 }
-.user-component:nth-child(3) div {
+.screen1 .user-component:nth-child(3) div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,22 +83,26 @@ body {
   border: #e6e5e7 solid 1px;
   border-radius: 20px;
 }
-.user-component:nth-child(3) div:first-child {
+.screen1 .user-component:nth-child(3) div:first-child {
   background-color: black;
   color: white;
 }
-.user-component:nth-child(3) div:last-child {
+.screen1 .user-component:nth-child(3) div:last-child {
   background-color: white;
   color: #e6e5e7;
 }
 .user-component:nth-child(3) div:last-child svg {
   margin-right: 5px;
 }
-.user-component:nth-child(4) {
-  display: flex;
+.screen1 .user-component:nth-child(4) {
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+}
+.screen1 .user-component:last-child {
+  position: fixed;
+  bottom: 80px;
+  width: 35%;
 }
 .other_song {
   display: flex;
@@ -167,10 +179,9 @@ body {
   align-items: center;
   background-color: black;
   color: white;
-  width: 28%;
+  width: 75%;
   height: 70px;
   border-radius: 35px;
-  position: fixed;
   padding: 0 20px;
 }
 .playing_interaction {
@@ -186,4 +197,133 @@ body {
 }
 .playing_title {
   font-size: 15px;
+}
+.screen2 .user-component:nth-child(2) {
+  margin: 60px 0 40px 0;
+}
+.now-playing-img {
+  background-color: orange;
+  width: 250px;
+  height: 250px;
+  box-shadow: 3px 5px 10px 5px orange;
+}
+.now-playing-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.now-playing-singer {
+  font-size: 15px;
+  color: #c1c1c1;
+}
+.screen2 .user-component:nth-child(3) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.screen2 .user-component:nth-child(4) {
+  width: 80%;
+}
+.screen2 .user-component:nth-child(4) .user-component__column:first-child {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+}
+.start-time,
+.end-time {
+  font-size: 10px;
+  color: #c1c1c1;
+}
+.screen2 .user-component:nth-child(4) .user-component__column:last-child {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+}
+#time_blank {
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  bottom: 2px;
+  background-color: white;
+  left: -55px;
+  z-index: 45;
+}
+.timeline-background {
+  position: absolute;
+  background-color: #c1c1c1;
+  height: 2px;
+  width: 300px;
+}
+@keyframes time_flies {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(300px);
+  }
+}
+@keyframes timedot_flies {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(300px);
+  }
+}
+.process-dot {
+  position: relative;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  bottom: 2px;
+  left: -148px;
+  animation: timedot_flies 141s linear;
+  z-index: 60;
+}
+.process-dot:active,
+.process-dot:hover {
+  transform: scale(1.2);
+}
+.process-line {
+  position: absolute;
+  height: 2px;
+  width: 3px;
+  background-color: black;
+  animation: time_flies 141s linear;
+  z-index: 10;
+  left: -2px;
+}
+
+.play_interact {
+  display: flex;
+  flex-direction: row;
+}
+.play_interact * {
+  margin: 20px 5px;
+}
+.play {
+  display: none;
+}
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: black;
+  cursor: pointer;
+}
+
+#checkbox {
+  display: none;
+}
+.play_interact:has(input:checked) .play {
+  display: flex;
+}
+.play_interact:has(input:checked) .pause {
+  display: none;
 }
